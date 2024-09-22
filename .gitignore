@@ -39,8 +39,5 @@ build/
 ### Mac OS ###
 .DS_Store
 
-/target/
-bootstrap/target/
-common/target/
-dal/target/
-service/target/
+**/target/
+*/target/
