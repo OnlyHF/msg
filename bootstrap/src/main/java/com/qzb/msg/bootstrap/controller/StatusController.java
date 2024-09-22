@@ -18,6 +18,11 @@ import java.util.Map;
 @RequestMapping("")
 public class StatusController {
 
+    /**
+     * 测活接口.
+     *
+     * @return  return
+     */
     @RequestMapping("/status")
     public Object status() {
         Map<String, String> map = new HashMap<>();

@@ -14,22 +14,34 @@ import static com.qzb.msg.common.constant.DateConstant.Y_M_D_H_M_S;
  */
 public class DateHelper {
 
-    public static String date2StrYMDHMS(Date date) {
+    /**
+     * date2StrYMDHMS.
+     *
+     * @param date  date
+     * @return  yyyy-MM-dd HH:mm:ss
+     */
+    public static String date2StrYMDHMS(final Date date) {
         return date2Str(date, Y_M_D_H_M_S);
     }
 
-    public static String date2StrYMD(Date date) {
+    /**
+     * date2StrYMD.
+     *
+     * @param date  date
+     * @return  yyyy-MM-dd
+     */
+    public static String date2StrYMD(final Date date) {
         return date2Str(date, YYYY_MM_DD);
     }
 
     /**
      * 日期类型转换.
      *
-     * @param date
-     * @param pattern
-     * @return
+     * @param date  date
+     * @param pattern   pattern
+     * @return  pattern
      */
-    public static String date2Str(Date date, String pattern) {
+    public static String date2Str(final Date date, final String pattern) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         String result = simpleDateFormat.format(date);
         return result;

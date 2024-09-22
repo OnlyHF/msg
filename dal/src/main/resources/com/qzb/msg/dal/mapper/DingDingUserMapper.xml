@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qzb.msg.dal.mapper.DingDingUserMapper">
+
+    <resultMap id="BaseResultMap" type="com.qzb.msg.dal.bean.DingDingUserDO">
+        <result column="ID" property="id" jdbcType="BIGINT" javaType="Long"/>
+        <result column="ORG_ID" property="orgId" jdbcType="CHAR" javaType="String"/>
+        <result column="DELETED" property="deleted" jdbcType="TINYINT" javaType="Integer"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, org_id, deleted, create_time, update_time
+    </sql>
+    
+    <select id="queryById" resultType="com.qzb.msg.dal.bean.DingDingUserDO">
+        select <include refid="Base_Column_List"/>
+        from msg_dingding_user
+        where id = #{id}
+    </select>
+    
+</mapper>
