@@ -14,7 +14,7 @@
         id, org_id, deleted, create_time, update_time
     </sql>
     
-    <select id="queryById" resultType="com.qzb.msg.dal.bean.DingDingUserDO">
+    <select id="queryById" resultMap="BaseResultMap">
         select <include refid="Base_Column_List"/>
         from msg_dingding_user
         where id = #{id}

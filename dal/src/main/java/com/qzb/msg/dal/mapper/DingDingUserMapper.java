@@ -4,7 +4,7 @@ import com.qzb.msg.dal.bean.DingDingUserDO;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * msg.
+ * msg_dingding_user.
  *
  * @author <a href="mailto:qianzb@yxt.com">qianzb</a>
  * @date 2024-09-22 20:24

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qzb.msg.dal.mapper.DingDingConfigMapper">
+
+    <resultMap id="BaseResultMap" type="com.qzb.msg.dal.bean.DingDingConfigDO">
+        <result column="ID" property="id" jdbcType="BIGINT" javaType="Long"/>
+        <result column="ORG_ID" property="orgId" jdbcType="CHAR" javaType="String"/>
+        <result column="APP_ID" property="appId" jdbcType="CHAR" javaType="String"/>
+        <result column="APP_KEY" property="appKey" jdbcType="VARCHAR" javaType="String"/>
+        <result column="APP_SECRET" property="appSecret" jdbcType="VARCHAR" javaType="String"/>
+        <result column="CONFIG_STATUS" property="configStatus" jdbcType="INTEGER" javaType="Integer"/>
+        <result column="DELETED" property="deleted" jdbcType="TINYINT" javaType="Integer"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, org_id, app_id, app_key, app_secret, config_status, deleted, create_time, update_time
+    </sql>
+    
+    <select id="queryByAppId" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from msg_dingding_config
+        where org_id = #{orgId}
+            and app_id = #{appId}
+            and deleted = 0
+            and config_status = 1
+        limit 1
+    </select>
+    
+</mapper>
