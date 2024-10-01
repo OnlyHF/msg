@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.yiwangqingshuiss</groupId>
+    <artifactId>gen-test</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <name>gen-test</name>
+    <url>http://www.yiwangqingshui.com</url>
+
+<!--    <repositories>-->
+<!--        <repository>-->
+<!--            <id>tenth</id>-->
+<!--            <url>http://172.17.125.159:8081/repository/maven-public/</url>-->
+<!--        </repository>-->
+<!--    </repositories>-->
+<!--    <pluginRepositories>-->
+<!--        <pluginRepository>-->
+<!--            <id>tenth</id>-->
+<!--            <url>http://172.17.125.159:8081/repository/maven-public/</url>-->
+<!--        </pluginRepository>-->
+<!--    </pluginRepositories>-->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.hanggold.mybatis</groupId>
+                <artifactId>mybatis-maven-plugin</artifactId>
+                <version>2.2.3</version>
+                <configuration>
+                    <packageName>com.qzb.msg.dal</packageName>
+                    <xmlPath>com.qzb.msg.dal.mapper</xmlPath>
+                    <outputDirectory>../dal</outputDirectory>
+                    <dbType>mysql</dbType>
+                    <!-- yes:分页  no:不分页 -->
+                    <pageFlag>yes</pageFlag>
+                    <url>jdbc:mysql://192.168.1.15:3306/msg</url>
+                    <username>root</username>
+                    <password>@msg2024.</password>
+                    <tablePrefix>msg_</tablePrefix>
+                    <pageFlag>true</pageFlag>
+                    <!--<url>jdbc:oracle:thin:@localhost:1521:orcl</url>-->
+                    <!--<username>scott</username>-->
+                    <!--<password>scott</password>-->
+                </configuration>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>5.1.47</version>
+                    </dependency>
+                </dependencies>
+
+
+            </plugin>
+        </plugins>
+
+    </build>
+</project>

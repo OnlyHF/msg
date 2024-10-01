@@ -3,6 +3,8 @@ package com.qzb.msg.dal.mapper;
 import com.qzb.msg.dal.bean.DingDingConfigDO;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * msg_dingding_config.
  *
@@ -19,6 +21,14 @@ public interface DingDingConfigMapper {
      * @param appId
      * @return
      */
-    DingDingConfigDO queryByAppId(@Param("orgId") String orgId, @Param("appId") String appId);
+    DingDingConfigDO queryByOrgIdAndAppId(@Param("orgId") String orgId, @Param("appId") String appId);
+
+    /**
+     * 查询orgId配置的钉钉.
+     *
+     * @param orgId
+     * @return
+     */
+    List<DingDingConfigDO> queryByOrgId(@Param("orgId") String orgId);
 
 }

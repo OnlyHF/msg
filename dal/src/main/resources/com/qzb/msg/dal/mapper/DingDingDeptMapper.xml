@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qzb.msg.dal.mapper.DingDingDeptMapper">
+
+    <resultMap id="BaseResultMap" type="com.qzb.msg.dal.bean.DingDingDeptDO">
+        <result column="id" property="id" jdbcType="BIGINT" javaType="Long"/>
+        <result column="org_id" property="orgId" jdbcType="CHAR" javaType="String"/>
+        <result column="app_id" property="appId" jdbcType="CHAR" javaType="String"/>
+        <result column="dept_id" property="deptId" jdbcType="BIGINT" javaType="Long"/>
+        <result column="dept_name" property="deptName" jdbcType="VARCHAR" javaType="String"/>
+        <result column="parent_id" property="parentId" jdbcType="BIGINT" javaType="Long"/>
+        <result column="create_dept_group" property="createDeptGroup" jdbcType="TINYINT" javaType="Integer"/>
+        <result column="auto_add_user" property="autoAddUser" jdbcType="TINYINT" javaType="Integer"/>
+        <result column="deleted" property="deleted" jdbcType="TINYINT" javaType="Integer"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, org_id, app_id, dept_id, dept_name, parent_id, create_dept_group, auto_add_user, deleted, create_time, update_time
+    </sql>
+
+    <select id="queryByDeptId" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from msg_dingding_dept
+        where org_id = #{orgId}
+            and app_id = #{appId}
+            and dept_id = #{deptId}
+            and deleted = 0
+        limit 1
+    </select>
+
+    <insert id="insert">
+        insert into msg_dingding_dept ( <include refid="Base_Column_List"/> )
+        values (
+             #{id}
+           , #{orgId}
+           , #{appId}
+           , #{deptId}
+           , #{deptName}
+           , #{parentId}
+           , #{createDeptGroup}
+           , #{autoAddUser}
+           , #{deleted}
+           , #{createTime}
+           , #{updateTime}
+        )
+    </insert>
+
+    <update id="updateById">
+        update msg_dingding_dept
+        set   org_id = #{orgId}
+            , app_id = #{appId}
+            , dept_id = #{deptId}
+            , dept_name = #{deptName}
+            , parent_id = #{parentId}
+            , create_dept_group = #{createDeptGroup}
+            , auto_add_user = #{autoAddUser}
+            , deleted = #{deleted}
+            , update_time = #{updateTime}
+        where id = #{id}
+    </update>
+
+</mapper>
