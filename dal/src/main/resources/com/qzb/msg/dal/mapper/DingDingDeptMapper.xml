@@ -61,4 +61,14 @@
         where id = #{id}
     </update>
 
+    <delete id="deleteByUpdateTime">
+        update msg_dingding_dept
+        set deleted = 1
+            , update_time = now()
+        where org_id = #{orgId}
+          and app_id = #{appId}
+          and update_time <![CDATA[ <= ]]> #{updateTime}
+          and deleted = 0
+    </delete>
+
 </mapper>

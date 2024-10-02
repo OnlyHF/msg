@@ -3,6 +3,8 @@ package com.qzb.msg.dal.mapper;
 import com.qzb.msg.dal.bean.DingDingDeptDO;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
+
 /**
  * msg_dingding_dept.
  *
@@ -39,5 +41,17 @@ public interface DingDingDeptMapper {
      * @return
      */
     int updateById(DingDingDeptDO deptDO);
+
+    /**
+     * 删除.
+     *
+     * @param orgId
+     * @param appId
+     * @param updateTime
+     * @return
+     */
+    int deleteByUpdateTime(@Param("orgId") String orgId,
+                           @Param("appId") String appId,
+                           @Param("updateTime") Date updateTime);
 
 }

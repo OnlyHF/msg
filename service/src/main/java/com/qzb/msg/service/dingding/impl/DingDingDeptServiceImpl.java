@@ -40,8 +40,12 @@ public class DingDingDeptServiceImpl implements IDingDingDeptService {
 
     @Override
     public int syncDept(final String orgId) {
+        Date handDate = new Date();
         List<DingDingConfigDO> dingConfigDOList = iDingDingConfigService.queryByOrgId(orgId);
-        dingConfigDOList.forEach(configDO -> syncDeptByConfig(configDO));
+        dingConfigDOList.forEach(configDO -> {
+            syncDeptByConfig(configDO, null);
+            dingDingDeptMapper.deleteByUpdateTime(orgId, configDO.getAppId(), handDate);
+        });
         return dingConfigDOList.size();
     }
 
@@ -50,8 +54,11 @@ public class DingDingDeptServiceImpl implements IDingDingDeptService {
      *
      * @param configDO  configDO
      */
-    private void syncDeptByConfig(final DingDingConfigDO configDO) {
+    private List<DeptBaseRes> syncDeptByConfig(final DingDingConfigDO configDO, final Long deptId) {
         DingDingDeptReq deptReq = new DingDingDeptReq();
+        if (!ObjectUtils.isEmpty(deptId)) {
+            deptReq.setDeptId(deptId);
+        }
         List<DeptBaseRes> deptListSub = dingDingCommonService.deptListSub(configDO.getAppKey(), configDO.getAppSecret(), deptReq);
         deptListSub.forEach(deptRes -> {
             DingDingDeptDO deptDO = dingDingDeptMapper.queryByDeptId(configDO.getOrgId(), configDO.getAppId(), deptRes.getDeptId());
@@ -75,7 +82,9 @@ public class DingDingDeptServiceImpl implements IDingDingDeptService {
                 deptDO.setUpdateTime(new Date());
                 dingDingDeptMapper.updateById(deptDO);
             }
+            syncDeptByConfig(configDO, deptRes.getDeptId());
         });
+        return deptListSub;
     }
 
 }
