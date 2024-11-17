@@ -1,5 +1,10 @@
 server:
-  port: 8080
+  port: 443
+  ssl:
+    key-store: classpath:qzbrunner.cn.jks
+    key-store-password: 3gh112rm
+    key-store-type: JKS
+    enabled: true
 
 spring:
   datasource:
